@@ -1,4 +1,4 @@
-#include "FrenetOptimalTrajectory.h"
+#include "AnytimeFrenetOptimalTrajectory.h"
 #include "FrenetPath.h"
 #include "py_cpp_struct.h"
 
@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+
     double wx [25] = {132.67, 128.67, 124.67, 120.67, 116.67, 112.67, 108.67,
                    104.67, 101.43,  97.77,  94.84,  92.89,  92.4 ,  92.4 ,
                    92.4 ,  92.4 ,  92.4 ,  92.4 ,  92.4 ,  92.39,  92.39,
@@ -62,8 +63,13 @@ int main() {
     };
 
     // run experiment
-    FrenetOptimalTrajectory fot = FrenetOptimalTrajectory(&fot_ic, &fot_hp);
+    AnytimeFrenetOptimalTrajectory fot = AnytimeFrenetOptimalTrajectory(&fot_ic, &fot_hp);
+
+    fot.asyncPlan();
+
     FrenetPath* best_frenet_path = fot.getBestPath();
+
+    fot.stopPlanning();
     if (best_frenet_path) {
         cout << "Success\n";
         return 1;
