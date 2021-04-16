@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_CXX_FLAGS "-march=native -O3 -pthread -Wall")
+set(CMAKE_CXX_FLAGS "-march=native -I -O3 -pthread -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
 
@@ -22,6 +22,8 @@ else()
     set(CUSTOM_EIGEN ${EIGEN_INCLUDE_DIR})
 endif()
 
+message(STATUS "EIGEN_INCLUDE_DIR include dir: ${EIGEN_INCLUDE_DIR}")
+
 include_directories(.)
 include_directories(
         ${CUSTOM_EIGEN}
@@ -32,11 +34,15 @@ include_directories("${CMAKE_SOURCE_DIR}/src"
                     "${CMAKE_SOURCE_DIR}/src/Polynomials"
                     "${CMAKE_SOURCE_DIR}/src/FrenetOptimalTrajectory"
                     "${CMAKE_SOURCE_DIR}/src/Obstacle"
-                    "${CMAKE_SOURCE_DIR}/src/Car")
+                    "${CMAKE_SOURCE_DIR}/src/Car",
+                    "/usr/include/python3.8") # for /usr/include/python3.8/structmember.h
+# Can e make this less sketch?
 
 add_library(FrenetOptimalTrajectory SHARED
             src/main.cpp
             src/utils.h
+            src/FrenetOptimalTrajectory/planner_package.cpp
+            src/FrenetOptimalTrajectory/planner_package.h
             src/Polynomials/QuarticPolynomial.cpp
             src/Polynomials/QuarticPolynomial.h
             src/Polynomials/QuinticPolynomial.cpp

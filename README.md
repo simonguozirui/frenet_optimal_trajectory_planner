@@ -70,3 +70,11 @@ Use the `-c` flag to see a speedup comparison between the threaded version and t
 To see the performance across using different number of threads, you can use the `-f` flag. Below shows a comparison of Runtime & Speedup using different number of threads, profiled on a 4-Core CPU with 8 logical processors.
 
 ![Multi-threading Speed Up Performance Comparison](img/speed-up-comparison-8-threads.png)
+
+
+## Anytime
+Unit tests in C, run `./build/AnytimeFrenetOptimalTrajectoryTest`.
+
+Build the Planner Module by `python setup.py install`.
+
+Run anytime test by `python FrenetOptimalTrajectory/anytime.py`.
