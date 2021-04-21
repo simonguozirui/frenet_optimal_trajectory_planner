@@ -76,5 +76,8 @@ To see the performance across using different number of threads, you can use the
 Unit tests in C, run `./build/AnytimeFrenetOptimalTrajectoryTest`.
 
 Build the Planner Module by `python setup.py install`.
+Or `python setup.py build_ext --inplace`.
 
 Run anytime test by `python FrenetOptimalTrajectory/anytime.py`.
+
+Use `./build.sh --clean` to do a clean build when necessary. 

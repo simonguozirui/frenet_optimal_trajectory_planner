@@ -68,7 +68,7 @@ hp = _parse_hyperparameters(hyperparameters)
 planner = fp.FotPlanner(ic, hp)
 planner.async_plan()
 
-planner.get_path()
+print(planner.get_path())
 # fot_wrapper.run_anytime_fot(initial_conditions, hyperparameters)
 # best_plan = planner.getBestPath()
 # for _ in range(100):

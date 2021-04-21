@@ -61,6 +61,7 @@ static PyObject *method_async_plan(PyObject *self, PyObject *args) {
 static PyObject *method_get_path(PyObject *self, PyObject *args) {
     printf("Module: Get Path\n");
     FotPath *rv = new FotPath();
+    printf("Got path\n");
     rv->path = ((FotPlanner *) self)->fot->getBestPath();
     return (PyObject *) rv;
     // need to modify this to return a FrenetPath
@@ -119,6 +120,8 @@ static struct PyModuleDef fot_planner_module = {
 
 /* Initialize the fot_planner module */
 PyMODINIT_FUNC PyInit_fot_planner(void) {
+    Py_Initialize();
+
     PyObject* m;
 
      if (PyType_Ready(&FotPlannerType) < 0)

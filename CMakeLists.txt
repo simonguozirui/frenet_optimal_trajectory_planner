@@ -22,12 +22,22 @@ else()
     set(CUSTOM_EIGEN ${EIGEN_INCLUDE_DIR})
 endif()
 
-message(STATUS "EIGEN_INCLUDE_DIR include dir: ${EIGEN_INCLUDE_DIR}")
-
 include_directories(.)
 include_directories(
         ${CUSTOM_EIGEN}
 )
+
+macro(print_all_variables)
+    message(STATUS "print_all_variables------------------------------------------{")
+    get_cmake_property(_variableNames VARIABLES)
+    foreach (_variableName ${_variableNames})
+        message(STATUS "${_variableName}=${${_variableName}}")
+    endforeach()
+    message(STATUS "print_all_variables------------------------------------------}")
+endmacro()
+
+# print_all_variables()
+
 
 include_directories("${CMAKE_SOURCE_DIR}/src"
                     "${CMAKE_SOURCE_DIR}/src/CubicSpline"
@@ -36,13 +46,12 @@ include_directories("${CMAKE_SOURCE_DIR}/src"
                     "${CMAKE_SOURCE_DIR}/src/Obstacle"
                     "${CMAKE_SOURCE_DIR}/src/Car",
                     "/usr/include/python3.8") # for /usr/include/python3.8/structmember.h
-# Can e make this less sketch?
 
 add_library(FrenetOptimalTrajectory SHARED
-            src/main.cpp
+            # src/main.cpp
             src/utils.h
-            src/FrenetOptimalTrajectory/planner_package.cpp
-            src/FrenetOptimalTrajectory/planner_package.h
+            # src/FrenetOptimalTrajectory/planner_package.cpp
+            # src/FrenetOptimalTrajectory/planner_package.h
             src/Polynomials/QuarticPolynomial.cpp
             src/Polynomials/QuarticPolynomial.h
             src/Polynomials/QuinticPolynomial.cpp
