@@ -1,6 +1,7 @@
 #include "Obstacle.h"
 
 #include <QLine>
+#include <QLineF>
 
 using namespace Eigen;
 using namespace std;
